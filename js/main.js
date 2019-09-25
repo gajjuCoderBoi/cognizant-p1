@@ -2,12 +2,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res=>res.json())
-        .then(posts=>{
+        .then(async posts=>{
             for (let i=0;i<5;i++)
            {
                 let div = document.createElement('div');
-                div.innerHTML = createPostDiv(posts[i]);
+                let comments = [];
+                await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
+                .then(res=>res.json())
+                .then(comnts=>{
+                    comments=comnts;
+                })
+
+                div.innerHTML = createPostDiv(posts[i],comments);
                 document.querySelector('.container').appendChild(div);
+
             }
         });
 
@@ -36,7 +44,28 @@ function createPostDiv(post, comments = []) {
                         </p>
                     </div>
                 </div>
+                ${
+                    comments.map(comment=>{
+                        return createCommentDiv(comment);
+                    })
+                }
         </div>
         <div/>`;
 
+}
+
+function createCommentDiv(comment) {
+    return `<div class="card comment-card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><a class="text-primary"><strong>${comment.user.username}</strong></a></p>
+                                <p>${comment.text}</p>
+                                <p>
+                                    <a class="float-right btn text-white btn-danger">Delete Comment</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
 }
