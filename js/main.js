@@ -45,17 +45,17 @@ function createPostDiv(post, comments = []) {
                     </div>
                 </div>
                 ${
-                    comments.map(comment=>{
-                        return createCommentDiv(comment);
-                    })
+                    comments.map(comment=>createCommentDiv(comment)).join('')
                 }
+                
         </div>
-        <div/>`;
+<div/>`;
 
 }
 
 function createCommentDiv(comment) {
-    return `<div class="card comment-card">
+    return `
+<div class="card comment-card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -67,5 +67,6 @@ function createCommentDiv(comment) {
                             </div>
                         </div>
                     </div>
-                </div>`
+                </div>
+`
 }
