@@ -1,7 +1,11 @@
-
-
-.card-inner{
+.post-card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.comment-card{
     margin-left: 4rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 
