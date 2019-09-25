@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: "POST",
         body: JSON.stringify({'email': `${email}`, 'password': `${password}`,'username':`${email}`})
         })
-        .then(res=> return res.json() ).then(res=>{console.log(res)})
+        .then(res=> res.json() ).then(res=>{console.log()})
         .catch((res)=>{ console.log("Error:"+ res) })
     })
 });
