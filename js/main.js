@@ -5,27 +5,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('navBarForm').innerHTML =
         loggedin ?
-            `                <button type="button" id = "signup" class="btn btn-primary">Username</button>
+            `                <button type="button" id = "profile" class="btn btn-primary">Username</button>
 ` :
             `
     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
-                <input id= "passwordInput" class="form-control mr-sm-2" type="text" placeholder="Password">
+                <input id= "passwordInput" class="form-control mr-sm-2" type="password" placeholder="Password">
                 <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
                 <button type="button" id = "signup" class="btn btn-success">Sign up</button>
     `;
 
-    document.getElementById("signup").addEventListener("click", function () {
-        window.location.href = "signup.html";
-    });
+    let signup = document.getElementById("signup"),
+        login = document.getElementById('login'),
+        profile = document.getElementById('profile');
+    if(profile){
 
-    /*document.getElementById("login").addEventListener("click",function(){
-        let email = document.getElementById("emailInput").value;
-        let password = document.getElementById("passwordInput").value;
+    }
+    if(login && signup){
+        document.getElementById("signup").addEventListener("click", function () {
+            window.location.href = "signup.html";
+        });
 
-        console.log(email);
-        console.log(password);
-        // window.location.href = "index.html";
-    });*/
+
+        document.getElementById("login").addEventListener("click",function(){
+            let email = document.getElementById("emailInput").value;
+            let password = document.getElementById("passwordInput").value;
+
+            console.log(email);
+            console.log(password);
+
+            if (!(email && password)){
+                alert("Please fill all the fields!!!")
+            }
+            // window.location.href = "index.html";
+        });
+    }
+
 
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
