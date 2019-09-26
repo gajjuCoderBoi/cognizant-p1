@@ -1,8 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
 
-    document.getElementById("signUp").addEventListener("click",function(){
+    document.getElementById("signup").addEventListener("click",function(){
         window.location.href = "signup.html";
     });
+
+    document.getElementById("login").addEventListener("click",function(){
+        let email = document.getElementById("emailInput").value;
+        let password = document.getElementById("passwordInput").value;
+
+        console.log(email);
+        console.log(password);
+        // window.location.href = "index.html";
+    });
+
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res=>res.json())
