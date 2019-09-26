@@ -131,9 +131,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                             </p>
                     </div>
                 </div>
-                ${isLoggedin ? createCommentDiv() : ""}
+                ${isLoggedin ? createCommentDiv(post) : ""}
                 ${
-            comments.map(comment => commentDiv(comment)).join('')
+            comments.map(comment => commentDiv(comment)).reverse().join('')
         }
                 
         </div>
@@ -178,18 +178,18 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Title</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="basic-addon3" id="createCommentInputTitle">
+                            <input type="text" class="form-control" aria-describedby="basic-addon3" id="creatPostInputTitle">
                             </div>
                             
                             <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text">Description</span>
                             </div>
-                            <textarea class="form-control" aria-label="With textarea" id="createCommentDescription"></textarea>
+                            <textarea class="form-control" aria-label="With textarea" id="createPostDescription"></textarea>
                             </div>
                             
                             <div>
-                            <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right" onclick="createPost()">Post</button>
+                            <button id = "createPost" class="btn btn-primary mt-sm-4 float-right" onclick="createPost()">Post</button>
                             </div>
             
                         </div>
@@ -200,18 +200,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         return div;
     }
 
-    function createCommentDiv() {
+    function createCommentDiv(post) {
         return `
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">Comment</span>
          </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
+        <textarea class="form-control" aria-label="With textarea" id="comment-text-area-${post.id}"></textarea>
     </div>
   
     <div>
+<<<<<<< HEAD
         <button type="button" id = "createComment" class="btn btn-primary mt-sm-4 float-right">Comment</button>
+=======
+        <button id = "post-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
+>>>>>>> a5bf55353939c5b6dec16bdc05b8c9dc4c54d956
     </div>
+    <div class="clearfix"></div>
     `
     }
 
@@ -233,8 +238,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 function createPost() {
-    let title = document.getElementById('createCommentInputTitle').value,
-        desc = document.getElementById('createCommentDescription').value,
+    let title = document.getElementById('createPostInputTitle').value,
+        desc = document.getElementById('createPostDescription').value,
         user = JSON.parse(localStorage.getItem('foodieUser'));
     fetch('http://thesi.generalassemb.ly:8080/post',{
         method: 'POST',
@@ -253,6 +258,7 @@ function createPost() {
     })
 }
 
+<<<<<<< HEAD
 function createComment(){
     let comment =  document.getElementById("createComment").value;
     fetch(`http://thesi.generalassemb.ly:8080/comment/1779`,{
@@ -271,6 +277,13 @@ function createComment(){
     })
 }
 
+=======
+function postComment(post) {
+    let postId = post.id.split('-')[1];
+    let postText = document.getElementById(`comment-text-area-${postId}`).value;
+
+}
+>>>>>>> a5bf55353939c5b6dec16bdc05b8c9dc4c54d956
 
 function deletePost(post) {
     let id = post.id.split('-')[1],
@@ -288,6 +301,8 @@ function deletePost(post) {
     })
 }
 
+
+
 function deleteComment(comment) {
     let id = comment.id.split('-')[1],
         user = JSON.parse(localStorage.getItem('foodieUser'));
@@ -302,7 +317,9 @@ function deleteComment(comment) {
             window.location.reload();
         }
     })
-
 }
+
+
+
 
 
