@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Title</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="basic-addon3" id="creatPostInputTitle">
+                            <input type="text" class="form-control" aria-describedby="basic-addon3" id="createPostInputTitle">
                             </div>
                             
                             <div class="input-group">
