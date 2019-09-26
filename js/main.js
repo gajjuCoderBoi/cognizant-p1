@@ -1,18 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let loggedin = false
-    ;
 
     document.getElementById('navBarForm').innerHTML = getNavBar(null);
-//         loggedin ?
-//             `                <button type="button" id = "profile" class="btn btn-primary">Username</button>
-// ` :
-//             `
-//     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
-//                 <input id= "passwordInput" class="form-control mr-sm-2" type="password" placeholder="Password">
-//                 <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
-//                 <button type="button" id = "signup" class="btn btn-success">Sign up</button>
-//     `;
+
+    let user = JSON.parse(localStorage.getItem('foodieUser'));
 
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
@@ -48,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }).then(r => r.json())
                     .then(res => {
                         console.log(res);
-                        localStorage.setItem("userToken", res.token);
-                        
-                        document.getElementById('navBarForm').innerHTML = getNavBar(res.username);
+                        localStorage.setItem("foodieUser", JSON.stringify(res));
+                        user = res;
+                        document.getElementById('navBarForm').innerHTML = getNavBar(user.username);
 
                     }).catch(e => {
                     console.log(e)
@@ -61,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getNavBar(userName){
         return userName ?
-            `                <button type="button" id = "profile" class="btn btn-primary">${userName}</button>
+            `<button type="button" id = "profile" class="btn btn-primary">${userName}</button>
 ` :
             `
     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
@@ -71,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     }
 
-    
+
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res => res.json())
         .then(async posts => {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < posts.length; i++) {
                 let div = document.createElement('div');
                 let comments = [];
                 await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
@@ -90,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-});
+
 
 function deletePost(post) {
     let id = post.id.split('-')[1];
@@ -120,9 +111,12 @@ function createPostDiv(post, comments = []) {
                         <div class="clearfix"></div>
                         <p>${post.description}</p>
                         <p>
-                            <a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${'post-' + post.id}">Delete Post</a>
-                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>
-                        </p>
+                        ${
+                            user && user.username === post.user.username ? 
+                                '<a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${"post-" + post.id}">Delete Post</a>\n                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>\n                        '
+                                : ''
+                        }
+                            </p>
                     </div>
                 </div>
                 ${
@@ -143,7 +137,11 @@ function createCommentDiv(comment) {
                                 <p><a class="text-primary"><strong>${comment.user.username}</strong></a></p>
                                 <p>${comment.text}</p>
                                 <p>
-                                    <a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${'comment-' + comment.id}">Delete Comment</a>
+                                ${
+        user && user.username === comment.user.username ?
+            '<a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${\'comment-\' + comment.id}">Delete Comment</a>'
+            : ''
+    }
                                 </p>
                             </div>
                         </div>
@@ -151,3 +149,14 @@ function createCommentDiv(comment) {
                 </div>
 `
 }
+
+function validateToken() {
+    if (user){
+        let token = user.token;
+        fetch()
+
+    }
+}
+
+
+});
