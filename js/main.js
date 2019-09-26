@@ -17,29 +17,43 @@ document.addEventListener("DOMContentLoaded", function () {
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
         profile = document.getElementById('profile');
-    if(profile){
+    if (profile) {
 
     }
-    if(login && signup){
+    if (login && signup) {
         document.getElementById("signup").addEventListener("click", function () {
             window.location.href = "signup.html";
         });
 
 
-        document.getElementById("login").addEventListener("click",function(){
+        document.getElementById("login").addEventListener("click", function () {
             let email = document.getElementById("emailInput").value;
             let password = document.getElementById("passwordInput").value;
 
             console.log(email);
             console.log(password);
 
-            if (!(email && password)){
+            if (!(email && password)) {
                 alert("Please fill all the fields!!!")
+            } else {
+                fetch('http://thesi.generalassemb.ly:8080/login', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "email": email,
+                        "password": password
+                    })
+                }).then(r => r.json())
+                    .then(res => {
+                        console.log(res);
+                    }).catch(e => {
+                    console.log(e)
+                })
             }
-            // window.location.href = "index.html";
         });
     }
-
 
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
