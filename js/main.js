@@ -3,16 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
     let loggedin = false
     ;
 
-    document.getElementById('navBarForm').innerHTML =
-        loggedin ?
-            `                <button type="button" id = "profile" class="btn btn-primary">Username</button>
-` :
-            `
-    <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
-                <input id= "passwordInput" class="form-control mr-sm-2" type="password" placeholder="Password">
-                <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
-                <button type="button" id = "signup" class="btn btn-success">Sign up</button>
-    `;
+    document.getElementById('navBarForm').innerHTML = getNavBar(null);
+//         loggedin ?
+//             `                <button type="button" id = "profile" class="btn btn-primary">Username</button>
+// ` :
+//             `
+//     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
+//                 <input id= "passwordInput" class="form-control mr-sm-2" type="password" placeholder="Password">
+//                 <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
+//                 <button type="button" id = "signup" class="btn btn-success">Sign up</button>
+//     `;
 
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
@@ -48,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }).then(r => r.json())
                     .then(res => {
                         console.log(res);
+                        localStorage.setItem("userToken", res.token);
+                        
+                        document.getElementById('navBarForm').innerHTML = getNavBar(res.username);
+
                     }).catch(e => {
                     console.log(e)
                 })
@@ -55,7 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function getNavBar(userName){
+        return userName ?
+            `                <button type="button" id = "profile" class="btn btn-primary">${userName}</button>
+` :
+            `
+    <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
+                <input id= "passwordInput" class="form-control mr-sm-2" type="password" placeholder="Password">
+                <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
+                <button type="button" id = "signup" class="btn btn-success">Sign up</button>
+    `;
+    }
 
+    
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res => res.json())
         .then(async posts => {
