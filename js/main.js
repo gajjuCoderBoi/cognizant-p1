@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    document.getElementById("signUp").addEventListener("click",function(){
+        window.location.href = "signup.html";
+    })
+
+
+
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res=>res.json())
         .then(async posts=>{
