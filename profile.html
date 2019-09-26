@@ -4,11 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
 </head>
 <body>
-    <h1>
-        Profile Page
-    </h1>
+    <div class="formDiv">
+        <form id = "update">
+          <h1>Update profile information</h1>
+
+          <div class="form-group">
+            <p>Email*</p>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+            />
+          </div>
+
+          <div class="form-group">
+            <p>Additional Email</p>
+            <input
+              type="email"
+              class="form-control"
+              id="additionalEmail"
+              placeholder="Enter email"
+            />
+          </div>
+
+          <div class="form-group">
+            <p>Password*</p>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+
+          <div class="form-group">
+            <p>Confirm Password*</p>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordConfirm"
+              placeholder="Password"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <p>User Name</p>
+            <input
+              type="text"
+              class="form-control"
+              id="userName"
+              placeholder="User Name"
+            />
+          </div>
+
+          <div class="form-group">
+            <p>Mobile</p>
+            <input
+              type="text"
+              class="form-control"
+              id="mobile"
+              placeholder="mobile"
+            />
+          </div>
+
+          <div class="form-group">
+            <p>Address</p>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              placeholder="Address"
+            />
+          </div>
+
+          <button class="btn btn-primary" id="updateBtn">Update</button>
+        </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/profile.js"></script>
 </body>
 </html>
