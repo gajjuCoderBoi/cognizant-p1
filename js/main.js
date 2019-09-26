@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
         profile = document.getElementById('profile'),
-        logout = document.getElementById("logout"),
+        logout = document.getElementById("logout");
         
 
 
@@ -258,10 +258,26 @@ function createPost() {
 
 function postComment(post) {
     let postId = post.id.split('-')[2];
-    let postText = document.getElementById(`comment-text-area-${postId}`).value;
+    let commentText = document.getElementById(`comment-text-area-${postId}`).value;
+    let user = JSON.parse(localStorage.getItem('foodieUser'));
 
-    console.log(postId, postText)
+    console.log(postId, commentText)
 
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${postId}`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+            "text" : commentText
+        })
+    }).then(r=>{
+        if(r.status === 200){
+            window.location.reload();
+        }
+    })
+}
 
 function deletePost(post) {
     let id = post.id.split('-')[1],
