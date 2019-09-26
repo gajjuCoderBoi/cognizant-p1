@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(res => {
           console.log(res);
+          localStorage.setItem("token",res.token);
+          window.location.href = "index.html";
         })
         .catch(res => {
           console.log("Error:" + res);
