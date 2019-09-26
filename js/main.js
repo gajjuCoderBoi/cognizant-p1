@@ -133,6 +133,7 @@ function postDiv(post, comments = []) {
                             </p>
                     </div>
                 </div>
+                ${isLoggedin? createCommentDiv():""}
                 ${
         comments.map(comment => commentDiv(comment)).join('')
     }
@@ -198,6 +199,21 @@ function createPostDiv(){
 </div>`
 
     return div;
+}
+
+function createCommentDiv(){
+    return `
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Comment</span>
+         </div>
+        <textarea class="form-control" aria-label="With textarea"></textarea>
+    </div>
+  
+    <div>
+        <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">comment</button>
+    </div>
+    `
 }
 
 async function validateToken() {
