@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("signUp").addEventListener("click",function(){
         window.location.href = "signup.html";
-    })
-
-
+    });
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res=>res.json())
@@ -27,6 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+function deletePost(post) {
+    let id = post.id.split('-')[1];
+    console.log(id);
+}
+
+function deleteComment(comment) {
+    let id = comment.id.split('-')[1];
+    console.log(id);
+}
 
 function createPostDiv(post, comments = []) {
     return `
@@ -44,9 +51,10 @@ function createPostDiv(post, comments = []) {
 
                         </h5>
                         <div class="clearfix"></div>
-                        <p>${post.description}</p><p>
-                            <a class="float-right text-white btn btn-danger ml-2">Delete Post</a>
-                            <a class="float-right btn btn-outline-primary ml-2"> Reply</a>
+                        <p>${post.description}</p>
+                        <p>
+                            <a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${'post-'+post.id}">Delete Post</a>
+                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>
                         </p>
                     </div>
                 </div>
@@ -68,7 +76,7 @@ function createCommentDiv(comment) {
                                 <p><a class="text-primary"><strong>${comment.user.username}</strong></a></p>
                                 <p>${comment.text}</p>
                                 <p>
-                                    <a class="float-right btn text-white btn-danger">Delete Comment</a>
+                                    <a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${'comment-'+comment.id}">Delete Comment</a>
                                 </p>
                             </div>
                         </div>
