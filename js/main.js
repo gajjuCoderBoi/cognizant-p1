@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+function hello(id) {
+    console.log("hello",id)
+}
+
 
 function createPostDiv(post, comments = []) {
     return `
@@ -38,9 +42,29 @@ function createPostDiv(post, comments = []) {
 
                         </h5>
                         <div class="clearfix"></div>
-                        <p>${post.description}</p><p>
-                            <a class="float-right text-white btn btn-danger ml-2">Delete Post</a>
-                            <a class="float-right btn btn-outline-primary ml-2"> Reply</a>
+                        <p>${post.description}</p>
+                        <p>
+                        ${
+                            (function () {
+                                let deletePostButton = document.createElement('button'),
+                                    replyPostButton = document.createElement('button'),
+                                    div = document.createElement('div');
+                                replyPostButton.className =  "float-right btn btn-outline-primary ml-2 replyPostButton";
+                                deletePostButton.className = 'float-right text-white btn btn-danger ml-2 deletePostButton';
+                                replyPostButton.innerText = " Reply";
+                                deletePostButton.innerText = "Delete Post";
+                                deletePostButton.onclick = hello;
+                                deletePostButton.addEventListener('click',e=>{
+                                    console.log("Hello");
+                                });
+
+                                div.appendChild(deletePostButton);
+                                div.appendChild(replyPostButton);
+                                return div.innerHTML;
+                            })()
+                        }
+                            <!--<a class="float-right text-white btn btn-danger ml-2 deletePostButton">Delete Post</a>
+                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>-->
                         </p>
                     </div>
                 </div>
@@ -62,7 +86,7 @@ function createCommentDiv(comment) {
                                 <p><a class="text-primary"><strong>${comment.user.username}</strong></a></p>
                                 <p>${comment.text}</p>
                                 <p>
-                                    <a class="float-right btn text-white btn-danger">Delete Comment</a>
+                                    <a class="float-right btn text-white btn-danger deleteCommentButton">Delete Comment</a>
                                 </p>
                             </div>
                         </div>
