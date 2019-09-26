@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let loggedin = false
-    ;
+    // let loggedin = false;
 
     document.getElementById('navBarForm').innerHTML = getNavBar(null);
 //         loggedin ?
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         login = document.getElementById('login'),
         profile = document.getElementById('profile'),
         logout = document.getElementById("logout");
-        
+
     if (profile) {
         document.getElementById("profile").addEventListener("click", function(){
             window.location.href = "profile.html";
@@ -27,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if(logout){
         document.getElementById("logout").addEventListener("click", function(){
-            window.location.href = "index.html";
             console.log("user logged out!!")
+            window.location.href = "index.html";  
         })
     }
     
