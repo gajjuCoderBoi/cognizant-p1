@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res => res.json())
         .then(async posts => {
-            for (let i = 0; i < posts.length; i++) {
+            for (let i = posts.length-1; i >= 0 ; i--) {
                 let div = document.createElement('div');
                 let comments = [];
                 await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
@@ -100,15 +100,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-function deletePost(post) {
-    let id = post.id.split('-')[1];
-    console.log(id);
-}
 
-function deleteComment(comment) {
-    let id = comment.id.split('-')[1];
-    console.log(id);
-}
 
 function createPostDiv(post, comments = []) {
     return `
@@ -130,9 +122,10 @@ function createPostDiv(post, comments = []) {
                         <p>
                         ${
                             user && user.username === post.user.username ? 
-                                '<a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${"post-" + post.id}">Delete Post</a>\n                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>\n                        '
+                                '<a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="post-'+post.id+'">Delete Post</a>\n                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>'
                                 : ''
                         }
+                        
                             </p>
                     </div>
                 </div>
@@ -156,7 +149,7 @@ function createCommentDiv(comment) {
                                 <p>
                                 ${
         user && user.username === comment.user.username ?
-            '<a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${\'comment-\' + comment.id}">Delete Comment</a>'
+            '<a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="comment-'+comment.id+'">Delete Comment</a>'
             : ''
     }
                                 </p>
@@ -183,3 +176,13 @@ async function validateToken() {
 
 }
 });
+
+function deletePost(post) {
+    let id = post.id.split('-')[1];
+    console.log(id);
+}
+
+function deleteComment(comment) {
+    let id = comment.id.split('-')[1];
+    console.log(id);
+}
