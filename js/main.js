@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     let user = JSON.parse(localStorage.getItem('foodieUser'));
     let isLoggedin = await validateToken();
 
+    if(isLoggedin){
+        document.querySelector(".container").appendChild(createPostDiv());
+    }
+
     document.getElementById('navBarForm').innerHTML = getNavBar(isLoggedin?user:null);
 
 
@@ -92,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         comments = comnts;
                     })
 
-                div.innerHTML = createPostDiv(posts[i], comments);
+                div.innerHTML = postDiv(posts[i], comments);
                 document.querySelector('.container').appendChild(div);
 
             }
@@ -102,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
-function createPostDiv(post, comments = []) {
+function postDiv(post, comments = []) {
     return `
 <div class="card post-card">
             <div class="card-body">
@@ -130,7 +134,7 @@ function createPostDiv(post, comments = []) {
                     </div>
                 </div>
                 ${
-        comments.map(comment => createCommentDiv(comment)).join('')
+        comments.map(comment => commentDiv(comment)).join('')
     }
                 
         </div>
@@ -138,7 +142,7 @@ function createPostDiv(post, comments = []) {
 
 }
 
-function createCommentDiv(comment) {
+function commentDiv(comment) {
     return `
 <div class="card comment-card">
                     <div class="card-body">
@@ -158,6 +162,42 @@ function createCommentDiv(comment) {
                     </div>
                 </div>
 `
+}
+
+function createPostDiv(){
+    let div = document.createElement("div");
+    div.innerHTML = `    <div class="card post-card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>
+                    Create a post
+                </h5>
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon3">Title</span>
+</div>
+<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+
+<div class="input-group">
+<div class="input-group-prepend">
+  <span class="input-group-text">Description</span>
+</div>
+<textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
+
+<div>
+<button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">create</button>
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>`
+
+    return div;
 }
 
 async function validateToken() {
@@ -186,3 +226,5 @@ function deleteComment(comment) {
     let id = comment.id.split('-')[1];
     console.log(id);
 }
+
+
