@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
         profile = document.getElementById('profile'),
-        logout = document.getElementById("logout");
+        logout = document.getElementById("logout"),
+        
+
 
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
@@ -104,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     function postDiv(post, comments = []) {
         return `
-<div class="card post-card">
+        <div class="card post-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <p>${post.description}</p>
                         <p>
                         ${
-            user && user.username === post.user.username ?
+                user && user.username === post.user.username ?
                 '<a class="float-right text-white btn btn-danger ml-2 deletePostButton mb-sm-2" onclick="deletePost(this)" id="post-' + post.id + '">Delete Post</a>'
                 : ''
         }
@@ -209,6 +211,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   
     <div>
         <button id = "post-button-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
+
     </div>
     <div class="clearfix"></div>
     `
@@ -252,12 +255,13 @@ function createPost() {
     })
 }
 
+
 function postComment(post) {
     let postId = post.id.split('-')[2];
     let postText = document.getElementById(`comment-text-area-${postId}`).value;
 
-    console.log(postId, postText);
-}
+    console.log(postId, postText)
+
 
 function deletePost(post) {
     let id = post.id.split('-')[1],
