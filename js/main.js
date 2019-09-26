@@ -16,15 +16,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
-        profile = document.getElementById('profile');
+        profile = document.getElementById('profile'),
+        logout = document.getElementById("logout");
+        
     if (profile) {
+        document.getElementById("profile").addEventListener("click", function(){
+            window.location.href = "profile.html";
+        });
+    } 
 
+    if(logout){
+        document.getElementById("logout").addEventListener("click", function(){
+            window.location.href = "index.html";
+            console.log("user logged out!!")
+        })
     }
+    
     if (login && signup) {
         document.getElementById("signup").addEventListener("click", function () {
             window.location.href = "signup.html";
         });
-
+    
 
         document.getElementById("login").addEventListener("click", function () {
             let email = document.getElementById("emailInput").value;
@@ -58,11 +70,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+   
+
 
     function getNavBar(userName){
         return userName ?
             `                <button type="button" id = "profile" class="btn btn-primary mr-sm-2">${userName}</button>
-                            <button type="button" id="profile" class="btn btn-danger">Logout</button>
+                            <button type="button" id="logout" class="btn btn-danger">Logout</button>
 ` :
             `
     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
