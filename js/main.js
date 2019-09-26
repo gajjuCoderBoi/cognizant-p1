@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-    // let loggedin = false;
-
-    document.getElementById('navBarForm').innerHTML = getNavBar(null);
+document.addEventListener("DOMContentLoaded", async function () {
 
     let user = JSON.parse(localStorage.getItem('foodieUser'));
+    let isLoggedin = await validateToken();
+
+    document.getElementById('navBarForm').innerHTML = getNavBar(isLoggedin?user:null);
+
 
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
@@ -15,20 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("profile").addEventListener("click", function(){
             window.location.href = "profile.html";
         });
-    } 
+    }
 
     if(logout){
         document.getElementById("logout").addEventListener("click", function(){
-            console.log("user logged out!!")
-            window.location.href = "index.html";  
+            localStorage.removeItem('foodieUser');
+            window.location.href = "index.html";
+
         })
     }
-    
+
     if (login && signup) {
         document.getElementById("signup").addEventListener("click", function () {
             window.location.href = "signup.html";
         });
-    
+
 
         document.getElementById("login").addEventListener("click", function () {
             let email = document.getElementById("emailInput").value;
@@ -53,22 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(res => {
                         console.log(res);
                         localStorage.setItem("foodieUser", JSON.stringify(res));
-                        user = res;
-                        document.getElementById('navBarForm').innerHTML = getNavBar(user.username);
-
+                        window.location.reload();
                     }).catch(e => {
                     console.log(e)
                 })
             }
         });
     }
-   
+
 
 
     function getNavBar(userName){
         return userName ?
 
-            `                <button type="button" id = "profile" class="btn btn-primary mr-sm-2">${userName}</button>
+            `                <button type="button" id = "profile" class="btn btn-primary mr-sm-2">${user.username}</button>
                             <button type="button" id="logout" class="btn btn-danger">Logout</button>
 
 ` :
@@ -168,13 +167,19 @@ function createCommentDiv(comment) {
 `
 }
 
-function validateToken() {
+async function validateToken() {
     if (user){
         let token = user.token;
-        fetch()
-
+        let r = await fetch('http://thesi.generalassemb.ly:8080/user/post',{
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+            .catch(e=>console.log(e))
+        return r.status === 200;
     }
+
 }
-
-
 });
