@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     let user = JSON.parse(localStorage.getItem('foodieUser'));
     let isLoggedin = await validateToken();
 
-    if(isLoggedin){
+    if (isLoggedin) {
         document.querySelector(".container").appendChild(createPostDiv());
     }
 
-    document.getElementById('navBarForm').innerHTML = getNavBar(isLoggedin?user:null);
+    document.getElementById('navBarForm').innerHTML = getNavBar(isLoggedin ? user : null);
 
 
     let signup = document.getElementById("signup"),
@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         logout = document.getElementById("logout");
 
     if (profile) {
-        document.getElementById("profile").addEventListener("click", function(){
+        document.getElementById("profile").addEventListener("click", function () {
             window.location.href = "profile.html";
         });
     }
 
-    if(logout){
-        document.getElementById("logout").addEventListener("click", function(){
+    if (logout) {
+        document.getElementById("logout").addEventListener("click", function () {
             localStorage.removeItem('foodieUser');
             window.location.href = "index.html";
 
@@ -67,8 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 
-
-    function getNavBar(userName){
+    function getNavBar(userName) {
         return userName ?
 
             `                <button type="button" id = "profile" class="btn btn-primary mr-sm-2">${user.username}</button>
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetch('http://thesi.generalassemb.ly:8080/post/list')
         .then(res => res.json())
         .then(async posts => {
-            for (let i = posts.length-1; i >= 0 ; i--) {
+            for (let i = posts.length - 1; i >= 0; i--) {
                 let div = document.createElement('div');
                 let comments = [];
                 await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
@@ -103,11 +102,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
 
-
-
-
-function postDiv(post, comments = []) {
-    return `
+    function postDiv(post, comments = []) {
+        return `
 <div class="card post-card">
             <div class="card-body">
                 <div class="row">
@@ -125,26 +121,26 @@ function postDiv(post, comments = []) {
                         <p>${post.description}</p>
                         <p>
                         ${
-                            user && user.username === post.user.username ? 
-                                '<a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="post-'+post.id+'">Delete Post</a>\n                            <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>'
-                                : ''
-                        }
+            user && user.username === post.user.username ?
+                '<a class="float-right text-white btn btn-danger ml-2 deletePostButton mb-sm-2" onclick="deletePost(this)" id="post-' + post.id + '">Delete Post</a>'
+                : ''
+        }
                         
                             </p>
                     </div>
                 </div>
-                ${isLoggedin? createCommentDiv():""}
+                ${isLoggedin ? createCommentDiv() : ""}
                 ${
-        comments.map(comment => commentDiv(comment)).join('')
-    }
+            comments.map(comment => commentDiv(comment)).join('')
+        }
                 
         </div>
 <div/>`;
 
-}
+    }
 
-function commentDiv(comment) {
-    return `
+    function commentDiv(comment) {
+        return `
 <div class="card comment-card">
                     <div class="card-body">
                         <div class="row">
@@ -153,56 +149,57 @@ function commentDiv(comment) {
                                 <p>${comment.text}</p>
                                 <p>
                                 ${
-        user && user.username === comment.user.username ?
-            '<a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="comment-'+comment.id+'">Delete Comment</a>'
-            : ''
-    }
+            user && user.username === comment.user.username ?
+                '<a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="comment-' + comment.id + '">Delete Comment</a>'
+                : ''
+        }
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 `
-}
+    }
 
-function createPostDiv(){
-    let div = document.createElement("div");
-    div.innerHTML = `    <div class="card post-card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <h5>
-                    Create a post
-                </h5>
+    function createPostDiv() {
+        let div = document.createElement("div");
+        div.innerHTML = `    
+            <div class="card post-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>
+                                Create a post
+                            </h5>
+            
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Title</span>
+                            </div>
+                            <input type="text" class="form-control" aria-describedby="basic-addon3" id="createCommentInputTitle">
+                            </div>
+                            
+                            <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Description</span>
+                            </div>
+                            <textarea class="form-control" aria-label="With textarea" id="createCommentDescription"></textarea>
+                            </div>
+                            
+                            <div>
+                            <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right" onclick="createPost()">Post</button>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
-<div class="input-group mb-3">
-<div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon3">Title</span>
-</div>
-<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
+        return div;
+    }
 
-<div class="input-group">
-<div class="input-group-prepend">
-  <span class="input-group-text">Description</span>
-</div>
-<textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
-
-<div>
-<button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">create</button>
-</div>
-
-            </div>
-        </div>
-    </div>
-</div>`
-
-    return div;
-}
-
-function createCommentDiv(){
-    return `
+    function createCommentDiv() {
+        return `
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">Comment</span>
@@ -211,27 +208,48 @@ function createCommentDiv(){
     </div>
   
     <div>
-        <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">comment</button>
+        <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">Comment</button>
     </div>
     `
-}
-
-async function validateToken() {
-    if (user){
-        let token = user.token;
-        let r = await fetch('http://thesi.generalassemb.ly:8080/user/post',{
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-        })
-            .catch(e=>console.log(e))
-        return r.status === 200;
     }
 
-}
+    async function validateToken() {
+        if (user) {
+            let token = user.token;
+            let r = await fetch('http://thesi.generalassemb.ly:8080/user/post', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+                .catch(e => console.log(e))
+            return r.status === 200;
+        }
+
+    }
 });
+
+function createPost() {
+    let title = document.getElementById('createCommentInputTitle').value,
+        desc = document.getElementById('createCommentDescription').value,
+        user = JSON.parse(localStorage.getItem('foodieUser'));
+    fetch('http://thesi.generalassemb.ly:8080/post',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        },
+        body:JSON.stringify({
+            "title" : title,
+            "description" : desc
+        })
+    }).then(r=>{
+        if (r.status === 200){
+            window.location.reload();
+        }
+    })
+}
 
 function deletePost(post) {
     let id = post.id.split('-')[1];
