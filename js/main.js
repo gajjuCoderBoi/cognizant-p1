@@ -1,34 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
 
-    document.getElementById("signup").addEventListener("click",function(){
+    let loggedin = false
+    ;
+
+    document.getElementById('navBarForm').innerHTML =
+        loggedin ?
+            `                <button type="button" id = "signup" class="btn btn-primary">Username</button>
+` :
+            `
+    <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
+                <input id= "passwordInput" class="form-control mr-sm-2" type="text" placeholder="Password">
+                <button type="button" id = "login" class="btn btn-success mr-sm-2">Login</button>
+                <button type="button" id = "signup" class="btn btn-success">Sign up</button>
+    `;
+
+    document.getElementById("signup").addEventListener("click", function () {
         window.location.href = "signup.html";
     });
 
-    document.getElementById("login").addEventListener("click",function(){
+    /*document.getElementById("login").addEventListener("click",function(){
         let email = document.getElementById("emailInput").value;
         let password = document.getElementById("passwordInput").value;
 
         console.log(email);
         console.log(password);
         // window.location.href = "index.html";
-    });
+    });*/
 
 
     fetch('http://thesi.generalassemb.ly:8080/post/list')
-        .then(res=>res.json())
-        .then(async posts=>{
-            for (let i=0;i<5;i++)
-           {
+        .then(res => res.json())
+        .then(async posts => {
+            for (let i = 0; i < 5; i++) {
                 let div = document.createElement('div');
                 let comments = [];
                 await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
-                .then(res=>res.json())
-                .then(comnts=>{
-                    comments=comnts;
-                })
+                    .then(res => res.json())
+                    .then(comnts => {
+                        comments = comnts;
+                    })
 
-                div.innerHTML = createPostDiv(posts[i],comments);
+                div.innerHTML = createPostDiv(posts[i], comments);
                 document.querySelector('.container').appendChild(div);
 
             }
@@ -64,14 +76,14 @@ function createPostDiv(post, comments = []) {
                         <div class="clearfix"></div>
                         <p>${post.description}</p>
                         <p>
-                            <a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${'post-'+post.id}">Delete Post</a>
+                            <a class="float-right text-white btn btn-danger ml-2 deletePostButton" onclick="deletePost(this)" id="${'post-' + post.id}">Delete Post</a>
                             <a class="float-right btn btn-outline-primary ml-2 replyPostButton"> Reply</a>
                         </p>
                     </div>
                 </div>
                 ${
-                    comments.map(comment=>createCommentDiv(comment)).join('')
-                }
+        comments.map(comment => createCommentDiv(comment)).join('')
+    }
                 
         </div>
 <div/>`;
@@ -87,7 +99,7 @@ function createCommentDiv(comment) {
                                 <p><a class="text-primary"><strong>${comment.user.username}</strong></a></p>
                                 <p>${comment.text}</p>
                                 <p>
-                                    <a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${'comment-'+comment.id}">Delete Comment</a>
+                                    <a class="float-right btn text-white btn-danger deleteCommentButton" onclick="deleteComment(this)" id="${'comment-' + comment.id}">Delete Comment</a>
                                 </p>
                             </div>
                         </div>
