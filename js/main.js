@@ -210,11 +210,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     </div>
   
     <div>
-<<<<<<< HEAD
         <button type="button" id = "createComment" class="btn btn-primary mt-sm-4 float-right">Comment</button>
-=======
-        <button id = "post-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
->>>>>>> a5bf55353939c5b6dec16bdc05b8c9dc4c54d956
     </div>
     <div class="clearfix"></div>
     `
@@ -258,7 +254,7 @@ function createPost() {
     })
 }
 
-<<<<<<< HEAD
+
 function createComment(){
     let comment =  document.getElementById("createComment").value;
     fetch(`http://thesi.generalassemb.ly:8080/comment/1779`,{
@@ -277,13 +273,6 @@ function createComment(){
     })
 }
 
-=======
-function postComment(post) {
-    let postId = post.id.split('-')[1];
-    let postText = document.getElementById(`comment-text-area-${postId}`).value;
-
-}
->>>>>>> a5bf55353939c5b6dec16bdc05b8c9dc4c54d956
 
 function deletePost(post) {
     let id = post.id.split('-')[1],
