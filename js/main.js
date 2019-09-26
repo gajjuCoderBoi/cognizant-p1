@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getNavBar(userName){
         return userName ?
-            `                <button type="button" id = "profile" class="btn btn-primary">${userName}</button>
-                            <button type="button" id="profile" class="btn btn-primary">Logout</button>
+            `                <button type="button" id = "profile" class="btn btn-primary mr-sm-2">${userName}</button>
+                            <button type="button" id="profile" class="btn btn-danger">Logout</button>
 ` :
             `
     <input id="emailInput" class="form-control mr-sm-2" type="text" placeholder="Email">
