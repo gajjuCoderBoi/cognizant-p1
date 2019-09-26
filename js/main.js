@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     <div>
         <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">Comment</button>
     </div>
+    <div class="clearfix"></div>
     `
     }
 
