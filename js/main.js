@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     </div>
   
     <div>
-        <button id = "post-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
+        <button id = "post-button-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
     </div>
     <div class="clearfix"></div>
     `
@@ -253,9 +253,10 @@ function createPost() {
 }
 
 function postComment(post) {
-    let postId = post.id.split('-')[1];
+    let postId = post.id.split('-')[2];
     let postText = document.getElementById(`comment-text-area-${postId}`).value;
 
+    console.log(postId, postText);
 }
 
 function deletePost(post) {
@@ -273,8 +274,6 @@ function deletePost(post) {
         }
     })
 }
-
-
 
 function deleteComment(comment) {
     let id = comment.id.split('-')[1],
