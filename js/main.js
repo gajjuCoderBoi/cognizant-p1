@@ -252,13 +252,25 @@ function createPost() {
 }
 
 function deletePost(post) {
-    let id = post.id.split('-')[1];
+    let id = post.id.split('-')[1],
+        user = JSON.parse(localStorage.getItem('foodieUser'));
     console.log(id);
+    fetch(`http://thesi.generalassemb.ly:8080/post/${id}`,{
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        },
+    }).then(r=>{
+        if (r.status === 200){
+            window.location.reload();
+        }
+    })
 }
 
 function deleteComment(comment) {
     let id = comment.id.split('-')[1];
-    console.log(id);
+
 }
 
 
