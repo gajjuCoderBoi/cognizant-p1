@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
         profile = document.getElementById('profile'),
-        logout = document.getElementById("logout");
+        logout = document.getElementById("logout"),
+        
+
 
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
@@ -104,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     function postDiv(post, comments = []) {
         return `
-<div class="card post-card">
+        <div class="card post-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <p>${post.description}</p>
                         <p>
                         ${
-            user && user.username === post.user.username ?
+                user && user.username === post.user.username ?
                 '<a class="float-right text-white btn btn-danger ml-2 deletePostButton mb-sm-2" onclick="deletePost(this)" id="post-' + post.id + '">Delete Post</a>'
                 : ''
         }
@@ -208,7 +210,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     </div>
   
     <div>
-        <button type="button" id = "createPost" class="btn btn-primary mt-sm-4 float-right">Comment</button>
+        <button type="button" id = "createComment" class="btn btn-primary mt-sm-4 float-right">Comment</button>
     </div>
     `
     }
@@ -250,6 +252,25 @@ function createPost() {
         }
     })
 }
+
+function createComment(){
+    let comment =  document.getElementById("createComment").value;
+    fetch(`http://thesi.generalassemb.ly:8080/comment/1779`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+            "text" : comment
+        })
+    }).then(r=>{
+        if(r.status === 200){
+            window.location.reload();
+        }
+    })
+}
+
 
 function deletePost(post) {
     let id = post.id.split('-')[1],
