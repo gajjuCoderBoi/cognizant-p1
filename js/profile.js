@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   getProfile();
-
     async function getProfile() {
       let user = JSON.parse(localStorage.getItem("foodieUser"));
       if (user) {
@@ -23,11 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
           .catch(e => console.log(e))
       }
   }
-  
+
+  document.getElementById('homeBtn').addEventListener('click', e=>{
+      e.preventDefault();
+
+      window.location.href = 'index.html'
+  });
+
   document.getElementById("updateBtn").addEventListener("click", event => {
     event.preventDefault();
 
-   
+
     let addtionalEmail = document.getElementById("additionalEmail").value;
     let username = document.getElementById("userName").value;
     let mobile = document.getElementById("mobile").value;
@@ -59,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let inform = document.createElement("p");
             let textInform = document.createTextNode("Your profile has been updated!");
             inform.appendChild(textInform);
-            
+
             document.getElementById("update").appendChild(inform);
         }
     })
