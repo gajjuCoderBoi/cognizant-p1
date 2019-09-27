@@ -19,7 +19,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
-            window.location.href = "profile.html";
+            if(isLoggedin){
+                //get placeholder infomation and placed at the profile page
+                
+                window.location.href = "profile.html";
+            }
         });
     }
 
@@ -67,6 +71,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         });
     }
+
+
+    
 
 
     function getNavBar(userName) {
