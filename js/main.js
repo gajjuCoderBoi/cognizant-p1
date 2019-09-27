@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
             if(isLoggedin){
+                //get placeholder infomation and placed at the profile page
+                getProfile();
                 window.location.href = "profile.html";
             }
         });
@@ -70,6 +72,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
+
+    async function getProfile() {
+        if (user) {
+            let token = user.token;
+            let r = await fetch('http://thesi.generalassemb.ly:8080/profile', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+                .catch(e => console.log(e))
+            return r.status === 200;
+        }
+    }
+    
 
     function getNavBar(userName) {
         return userName ?

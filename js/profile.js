@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // 'Authorization': `Bearer ${localStorage.token}`
         },
         body: JSON.stringify({
-            // "additionalEmail" : addtionalEmail,
+            "additionalEmail" : addtionalEmail,
             "mobile" : mobile,
-            // "Address": address,
+            "address": address,
         })
     }).then(r=>{
         if(r.status === 200){
