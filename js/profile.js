@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     "address": address,
                 })
             }).then(r => {
+                let select = document.getElementById("update");
+                select.removeChild(select.lastChild);
+
                 if (r.status === 200) {
                     // window.location.reload();
                     let inform = document.createElement("p");
