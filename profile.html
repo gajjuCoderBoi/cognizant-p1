@@ -9,90 +9,66 @@
     <title>Profile</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <h1>Foodie</h1>
+        </a>
+        <div class = "float-right d-inline-flex" id="navBarForm">
+            <button class="btn btn-info" id="updateBtn">Home</button>
+
+        </div>
+    </nav>
     <div class="formDiv">
         <form id = "update">
-          <h1>Update profile information</h1>
+            <h1>Update profile information</h1>
+            <div class="form-group">
+                <p>User Name</p>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="userName"
+                        placeholder="User Name"
+                        disabled
+                />
+            </div>
+            <div class="form-group">
+                <p>Additional Email</p>
+                <input
+                        type="email"
+                        class="form-control"
+                        id="additionalEmail"
+                        placeholder="Enter email"
+                />
+            </div>
+            <div class="form-group">
+                <p>Mobile</p>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="mobile"
+                        placeholder="mobile"
+                />
+            </div>
 
-          <div class="form-group">
-            <p>User Name</p>
-            <input
-              type="text"
-              class="form-control"
-              id="userName"
-              placeholder="User Name"
-              disabled
-            />
-          </div>
+            <div class="form-group">
+                <p>Address</p>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        placeholder="Address"
+                />
+            </div>
 
-          <!-- <div class="form-group">
-            <p>Email*</p>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="Enter email"
-            />
-          </div> -->
-
-          <div class="form-group">
-            <p>Additional Email</p>
-            <input
-              type="email"
-              class="form-control"
-              id="additionalEmail"
-              placeholder="Enter email"
-            />
-          </div>
-
-          <!-- <div class="form-group">
-            <p>Password*</p>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="Password"
-            />
-          </div>
-
-          <div class="form-group">
-            <p>Confirm Password*</p>
-            <input
-              type="password"
-              class="form-control"
-              id="passwordConfirm"
-              placeholder="Password"
-            />
-          </div> -->
-
-
-          
-
-          <div class="form-group">
-            <p>Mobile</p>
-            <input
-              type="text"
-              class="form-control"
-              id="mobile"
-              placeholder="mobile"
-            />
-          </div>
-
-          <div class="form-group">
-            <p>Address</p>
-            <input
-              type="text"
-              class="form-control"
-              id="address"
-              placeholder="Address"
-            />
-          </div>
-
-          <button class="btn btn-primary" id="updateBtn">Update</button>
+            <button class="btn btn-primary" id="updateBtn">Update</button>
         </form>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/profile.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="js/profile.js"></script>
+</div>
+
 </body>
 </html>
