@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let user = JSON.parse(localStorage.getItem('foodieUser'));
 
-    
 
     fetch(`http://thesi.generalassemb.ly:8080/profile`,{
         method: 'POST',
@@ -64,14 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("update").appendChild(inform);
         }
     })
-
-
-
   });
-
-
-
-
-
 
 });
