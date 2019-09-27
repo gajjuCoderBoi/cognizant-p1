@@ -9,19 +9,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     document.getElementById('navBarForm').innerHTML = getNavBar(isLoggedin ? user : null);
 
-
     let signup = document.getElementById("signup"),
         login = document.getElementById('login'),
         profile = document.getElementById('profile'),
         logout = document.getElementById("logout");
-        
 
 
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
-            if(isLoggedin){
+            if (isLoggedin) {
                 //get placeholder infomation and placed at the profile page
-                
+
                 window.location.href = "profile.html";
             }
         });
@@ -45,9 +43,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             let email = document.getElementById("emailInput").value;
             let password = document.getElementById("passwordInput").value;
 
-            console.log(email);
-            console.log(password);
-
             if (!(email && password)) {
                 alert("Please fill all the fields!!!")
             } else {
@@ -62,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                     })
                 }).then(r => r.json())
                     .then(res => {
-                        console.log(res);
                         localStorage.setItem("foodieUser", JSON.stringify(res));
                         window.location.reload();
                     }).catch(e => {
@@ -71,9 +65,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         });
     }
-
-
-    
 
 
     function getNavBar(userName) {
@@ -130,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <p>${post.description}</p>
                         <p>
                         ${
-                user && user.username === post.user.username ?
+            user && user.username === post.user.username ?
                 '<a class="float-right text-white btn btn-danger ml-2 deletePostButton mb-sm-2" onclick="deletePost(this)" id="post-' + post.id + '">Delete Post</a>'
                 : ''
         }
@@ -245,18 +236,18 @@ function createPost() {
     let title = document.getElementById('createPostInputTitle').value,
         desc = document.getElementById('createPostDescription').value,
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch('http://thesi.generalassemb.ly:8080/post',{
+    fetch('http://thesi.generalassemb.ly:8080/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${user.token}`
         },
-        body:JSON.stringify({
-            "title" : title,
-            "description" : desc
+        body: JSON.stringify({
+            "title": title,
+            "description": desc
         })
-    }).then(r=>{
-        if (r.status === 200){
+    }).then(r => {
+        if (r.status === 200) {
             window.location.reload();
         }
     })
@@ -267,20 +258,17 @@ function postComment(post) {
     let postId = post.id.split('-')[2];
     let commentText = document.getElementById(`comment-text-area-${postId}`).value;
     let user = JSON.parse(localStorage.getItem('foodieUser'));
-
-    console.log(postId, commentText)
-
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${postId}`,{
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${postId}`, {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${user.token}`
         },
         body: JSON.stringify({
-            "text" : commentText
+            "text": commentText
         })
-    }).then(r=>{
-        if(r.status === 200){
+    }).then(r => {
+        if (r.status === 200) {
             window.location.reload();
         }
     })
@@ -289,14 +277,14 @@ function postComment(post) {
 function deletePost(post) {
     let id = post.id.split('-')[1],
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch(`http://thesi.generalassemb.ly:8080/post/${id}`,{
-        method:'DELETE',
+    fetch(`http://thesi.generalassemb.ly:8080/post/${id}`, {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${user.token}`
         },
-    }).then(r=>{
-        if (r.status === 200){
+    }).then(r => {
+        if (r.status === 200) {
             window.location.reload();
         }
     })
@@ -305,14 +293,14 @@ function deletePost(post) {
 function deleteComment(comment) {
     let id = comment.id.split('-')[1],
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`,{
-        method:'DELETE',
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`, {
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${user.token}`
         },
-    }).then(r=>{
-        if (r.status === 200){
+    }).then(r => {
+        if (r.status === 200) {
             window.location.reload();
         }
     })

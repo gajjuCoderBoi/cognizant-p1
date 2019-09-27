@@ -10,14 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let mobile = document.getElementById("mobile").value;
     let address = document.getElementById("address").value;
 
-    console.log(email);
-    console.log(addtionalEmail);
-    console.log(password);
-    console.log(passwordConfirm);
-    console.log(username);
-    console.log(mobile);
-    console.log(address);
-
     (function createSignup(){
       if (
           email !== "" &&
@@ -38,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(res => res.json())
             .then(res => {
-              console.log(res);
               localStorage.setItem("foodieUser",JSON.stringify(res));
               creatProfile(res.token);
             })
@@ -69,12 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
               window.location.href = 'index.html'
             }
           })
-
           .catch(res => {
             console.log("Error:" + res);
           });
     }
-
-
   });
 });

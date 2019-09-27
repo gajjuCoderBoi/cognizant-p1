@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
         async function getProfile() {
             if (user) {
                 let token = user.token;
-                console.log(token);
                 let r = await fetch('http://thesi.generalassemb.ly:8080/profile', {
                     method: "GET",
                     headers: {
@@ -12,13 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         'Authorization': `Bearer ${token}`
                     },
                 })
-                    .then(res=>res.json())
-                    .then(res=>{
+                    .then(res => res.json())
+                    .then(res => {
                         document.getElementById("additionalEmail").value = res.additionalEmail;
                         document.getElementById("userName").value = res.user.username;
                         document.getElementById("mobile").value = res.mobile;
                         document.getElementById("address").value = res.address;
-                        console.log(res);
                     })
                     .catch(e => console.log(e))
             }
@@ -26,48 +24,41 @@ document.addEventListener("DOMContentLoaded", () => {
     )();
 
 
-  document.getElementById('homeBtn').addEventListener('click', e=>{
-      e.preventDefault();
-      window.location.href = 'index.html'
-  });
+    document.getElementById('homeBtn').addEventListener('click', e => {
+        e.preventDefault();
+        window.location.href = 'index.html'
+    });
 
-  document.getElementById("updateBtn").addEventListener("click", event => {
-    event.preventDefault();
+    document.getElementById("updateBtn").addEventListener("click", event => {
+        event.preventDefault();
 
-    let addtionalEmail = document.getElementById("additionalEmail").value;
-    let username = document.getElementById("userName").value;
-    let mobile = document.getElementById("mobile").value;
-    let address = document.getElementById("address").value;
+        let addtionalEmail = document.getElementById("additionalEmail").value;
+        let username = document.getElementById("userName").value;
+        let mobile = document.getElementById("mobile").value;
+        let address = document.getElementById("address").value;
 
-    console.log(addtionalEmail);
-    console.log(username);
-    console.log(mobile);
-    console.log(address);
+        (function updateProfile() {
+            fetch(`http://thesi.generalassemb.ly:8080/profile`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },
+                body: JSON.stringify({
+                    "additionalEmail": addtionalEmail,
+                    "mobile": mobile,
+                    "address": address,
+                })
+            }).then(r => {
+                if (r.status === 200) {
+                    // window.location.reload();
+                    let inform = document.createElement("p");
+                    let textInform = document.createTextNode("Your profile has been updated!");
+                    inform.appendChild(textInform);
 
-    updateProfile();
-
-  function updateProfile() {
-      fetch(`http://thesi.generalassemb.ly:8080/profile`,{
-          method: 'POST',
-          headers:{
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${user.token}`
-          },
-          body: JSON.stringify({
-              "additionalEmail" : addtionalEmail,
-              "mobile" : mobile,
-              "address": address,
-          })
-      }).then(r=>{
-          if(r.status === 200){
-              // window.location.reload();
-              let inform = document.createElement("p");
-              let textInform = document.createTextNode("Your profile has been updated!");
-              inform.appendChild(textInform);
-
-              document.getElementById("update").appendChild(inform);
-          }
-      })
-  }
-})
-})
+                    document.getElementById("update").appendChild(inform);
+                }
+            })
+        })()
+    })
+});
