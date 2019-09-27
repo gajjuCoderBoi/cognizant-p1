@@ -84,10 +84,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 },
             })
                 .catch(e => console.log(e))
-            return r.status === 200;
+            // return r.status === 200;
+            .sucess(()=>{
+                console.log(r);
+            })
         }
     }
-    
+
 
     function getNavBar(userName) {
         return userName ?

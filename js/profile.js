@@ -1,24 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
+  getProfile();
+
+    async function getProfile() {
+      let user = JSON.parse(localStorage.getItem("foodieUser"));
+      if (user) {
+          let token = user.token;
+          let r = await fetch('http://thesi.generalassemb.ly:8080/profile', {
+              method: "GET",
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+          })
+          .then(res=>res.json())
+          .then(res=>{
+            document.getElementById("additionalEmail").value = res.additionalEmail;
+            document.getElementById("userName").value = res.user.username;
+            document.getElementById("mobile").value = res.mobile;
+            document.getElementById("address").value = res.address;
+            console.log(res);
+          })
+          .catch(e => console.log(e))
+      }
+  }
+  
   document.getElementById("updateBtn").addEventListener("click", event => {
     event.preventDefault();
 
-    // let email = document.getElementById("email").value;
+   
     let addtionalEmail = document.getElementById("additionalEmail").value;
-    // let password = document.getElementById("password").value;
-    // let passwordConfirm = document.getElementById("passwordConfirm").value;
-    // let username = document.getElementById("userName").value;
+    let username = document.getElementById("userName").value;
     let mobile = document.getElementById("mobile").value;
     let address = document.getElementById("address").value;
 
-    // console.log(email);
     console.log(addtionalEmail);
-    // console.log(password);
-    // console.log(passwordConfirm);
-    // console.log(username);
+    console.log(username);
     console.log(mobile);
     console.log(address);
 
     let user = JSON.parse(localStorage.getItem('foodieUser'));
+
+    
 
     fetch(`http://thesi.generalassemb.ly:8080/profile`,{
         method: 'POST',
