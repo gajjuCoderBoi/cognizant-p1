@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         localStorage.setItem("foodieUser", JSON.stringify(res));
                         window.location.reload();
                     }).catch(e => {
-                    console.log(e)
+                    console.log(e);
                 })
             }
         });
