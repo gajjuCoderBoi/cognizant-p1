@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (profile) {
         document.getElementById("profile").addEventListener("click", function () {
-            window.location.href = "profile.html";
+            if(isLoggedin){
+                window.location.href = "profile.html";
+            }
         });
     }
 
