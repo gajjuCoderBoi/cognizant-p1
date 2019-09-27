@@ -18,35 +18,63 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(mobile);
     console.log(address);
 
-    if (
-      email !== "" &&
-      password !== "" &&
-      passwordConfirm !== "" &&
-      password === passwordConfirm
-    ) {
-      fetch("http://thesi.generalassemb.ly:8080/signup", {
+    (function createSignup(){
+      if (
+          email !== "" &&
+          password !== "" &&
+          passwordConfirm !== "" &&
+          password === passwordConfirm
+      ) {
+        fetch("http://thesi.generalassemb.ly:8080/signup", {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          method: "POST",
+          body: JSON.stringify({
+            email: `${email}`,
+            password: `${password}`,
+            username: `${email}`
+          })
+        })
+            .then(res => res.json())
+            .then(res => {
+              console.log(res);
+              localStorage.setItem("foodieUser",JSON.stringify(res));
+              creatProfile(res.token);
+            })
+            .catch(res => {
+              console.log("Error:" + res);
+            });
+      }
+      else{
+        alert("please enter again!");
+      }
+    })();
+
+    function creatProfile(token) {
+      fetch("http://thesi.generalassemb.ly:8080/profile", {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         method: "POST",
         body: JSON.stringify({
-          email: `${email}`,
-          password: `${password}`,
-          username: `${email}`
+          "additionalEmail" : addtionalEmail,
+          "mobile" : mobile,
+          "address" : address
         })
       })
-        .then(res => res.json())
-        .then(res => {
-          console.log(res);
-          localStorage.setItem("token",res.token);
-          window.location.href = "index.html";
-        })
-        .catch(res => {
-          console.log("Error:" + res);
-        });
+          .then(res => {
+            if (res.status === 200){
+              window.location.href = 'index.html'
+            }
+          })
+
+          .catch(res => {
+            console.log("Error:" + res);
+          });
     }
-    else{
-        alert("please enter again!");
-    }
+
+
   });
 });
