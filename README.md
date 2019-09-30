@@ -1,38 +1,121 @@
-# cognizant-p1
+# Project-1
 
-Explanations of the technologies used.
+<h3 align="center">Foodie</h3>
+
+<p align="center">
+  Foodie is an a discussion forum where people post and comment on a food recipe. 
+  <br>
+
+  <br>
+ 
+  ·
+  <a href="http://gajjucoderboi.github.io/cognizant-p1/src/index">DEMO</a>
+  ·
+  <a href="https://www.pivotaltracker.com/n/projects/2400262">User Stories</a>
+   ·
+ 
+</p>
+
+## Technology Used (Dependencies)
+
+####Bootstrap
+
+   We use the Bootstrap to style our html elements, paste following code inside the head tag:
+   
+   * Installation instructions 
+   
+    Include These files into he index.html
+    
+    <head>
+       ..
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       ..
+    </head>
+    <body>
+        .
+        .
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    
+####Tools
+ * Webstorm 
+ * VS Code
+ * VS Code Live Server
+ * Postman (API Testing and Calls)
 
 
-A couple of paragraphs about the general approach you took.
+## Approaches Used
+
+## User Stories
+
+[Pivotal Tracker (Foodie App)](https://www.pivotaltracker.com/n/projects/2400262)
+
+Application Goals from User Stories are:
+    
+* Sign-up and Create Profile Foodie User
+* Anyone can See Posts and Comments
+* Signed-in user able to post a Post and comment
+* Signed-in user able to delete it's own Posts and Comments
 
 
-Descriptions of any unsolved problems or major hurdles you had to overcome.
+## Wire Frame
 
+![Wireframe](./img/wireframe.jpg)
 
+## Timeline
 
-# A link to your planning documentation for how you broke down this project with deliverables and timelines.
-1. We give our user stories points, so that we could priority our development steps https://www.pivotaltracker.com/n/projects/2400262
-2. Monday - user stories
-   Tuesday - Home page, fetch all users post and comments and display on the home page.
-   Wednsday - Sign up page and login started
-   Thursday - All the post and comments functional works.
-   Friday - Finished profile page and testing all the possible error.
+1. Requirement Analysis
+    * Tuesday(Sep 24, 2019) - user stories
+        
+        We give our user stories points, so that we could priority our development steps 
+ 
+            https://www.pivotaltracker.com/n/projects/2400262
 
+2. Development
+    
+    * Wednesday(Sep 25, 2019) - Home page, fetch all users post and comments and display on the home page.
+    * Thursday(Sep 26, 2019) - Sign up page and login started
+    * Friday(Sep 27, 2019) - All the post and comments functional works.
+    * Friday(Sep 27, 2019) - Manual Testing - Finished profile page and testing all the possible error. 
 
-# Installation instructions for any dependencies.
-We use the Bootstrap to style our html elements, paste following code inside the head tag:
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+3. Deployement
+    * Friday(Sep 27, 2019) -  Deployed onto Github Sites
+    
+        <a href="http://gajjucoderboi.github.io/cognizant-p1/src/index">DEMO</a>
+        
+4. Presentation
+    * Monday (Sep 30, 2019) - Presentation
 
-and following code before the body tag:
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+## What's included
 
+Within the download you'll find the following directories and files, logically grouping common assets and providing both compiled and minified variations. You'll see something like this:
 
-# A link to your user stories — who your users are, what they want, and why.
-https://www.pivotaltracker.com/n/projects/2400262
+```text
+cognizant-p1/
+├── README.md
+└── src
+    ├── css
+    │   ├── main.css
+    │   ├── profile.css
+    │   └── signup.css
+    ├── js
+    │   ├── main.js
+    │   ├── profile.js
+    │   └── signup.js
+    ├── index.html
+    ├── profile.html
+    └── signup.html
 
+```
 
-# A link to your wireframes — sketches of major views or interfaces in your application.
-https://imgur.com/a/IzgPhfP
+## Creators
 
+**Mingjing Tang**
+
+- <https://github.com/mingjingtang>
+
+**Mohammad Javed**
+
+- <https://github.com/gajjuCoderBoi>
