@@ -29,8 +29,102 @@ Application Goals from User Stories are:
 
 ## Major Hurdles
 
+* Stop repeating Code in html. So used JS to type code. Create functional components to tackle this. 
+        
+        * Post
+        
+        function postDiv(post, comments = []) {
+                return `
+                <div class="card post-card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                               ...
+                               ...
+                            </div>
+                        </div>
+                    </div>
+                <div/>`;
+        }
 
+* Add click eventlistener into Raw html buttons. 
 
+        function createPostDiv() {
+                let div = document.createElement("div");
+                div.innerHTML = `    
+                    <div class="card post-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    ...
+                                    
+                                    <button ... onclick="createPost()"...</button>
+                                    
+                                    ...
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                return div;
+            }
+            
+* Adding multiple comments into Posts with reference to Post id. 
+
+            function postDiv(post, comments = []) {
+                    return `
+                    <div class="card post-card">
+                        <div class="card-body">
+                            <div class="row">
+                                ...
+                                </div>
+                            </div>
+                            ...
+                        --> comments.map(comment => commentDiv(comment)).reverse().join('')
+                    }     
+                    </div>
+            <div/>`;
+                }
+                
+* Creating Profile with Signup
+
+        (function createSignup(){
+                fetch("http://thesi.generalassemb.ly:8080/signup", {
+                  headers: ...,
+                  method: "POST",
+                  body: JSON.stringify({
+                    ...
+                  })
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                      localStorage.setItem("foodieUser",JSON.stringify(res));
+         ---------->  creatProfile(res.token);
+            })();
+        
+        
+  
+     ----------> function creatProfile(token) {
+                  fetch("http://thesi.generalassemb.ly:8080/profile", {
+                    headers: {
+                      ...
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                      ...
+                    })
+                  })
+                      .then(res => {
+                        if (res.status === 200){
+                          window.location.href = 'index.html'
+                        }
+                      })
+                      .catch(res => {
+                        console.log("Error:" + res);
+                      });
+                }
+              });
+    
 ## Timeline
 
 1. Requirement Analysis
@@ -116,7 +210,7 @@ cognizant-p1/
 
 **Mingjing Tang**
 
-- <https://github.com/mingjingtang>
+- <https://github.com/mingjingtang>
 
 **Mohammad Javed**
 
