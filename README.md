@@ -87,7 +87,7 @@ Application Goals from User Stories are:
                 }
                 
 * Creating Profile with Signup
-
+```text
         (function createSignup(){
                 fetch("http://thesi.generalassemb.ly:8080/signup", {
                   headers: ...,
@@ -101,30 +101,31 @@ Application Goals from User Stories are:
                       localStorage.setItem("foodieUser",JSON.stringify(res));
          ---------->  creatProfile(res.token);
             })();
-        
+  ```      
         
   
-     ----------> function creatProfile(token) {
-                  fetch("http://thesi.generalassemb.ly:8080/profile", {
-                    headers: {
-                      ...
-                    },
-                    method: "POST",
-                    body: JSON.stringify({
-                      ...
-                    })
-                  })
-                      .then(res => {
-                        if (res.status === 200){
-                          window.location.href = 'index.html'
-                        }
+```text
+      ----------> function creatProfile(token) {
+                      fetch("http://thesi.generalassemb.ly:8080/profile", {
+                        headers: {
+                          ...
+                        },
+                        method: "POST",
+                        body: JSON.stringify({
+                          ...
+                        })
                       })
-                      .catch(res => {
-                        console.log("Error:" + res);
-                      });
-                }
-              });
-    
+                          .then(res => {
+                            if (res.status === 200){
+                              window.location.href = 'index.html'
+                            }
+                          })
+                          .catch(res => {
+                            console.log("Error:" + res);
+                          });
+                    }
+                  });
+```
 ## Timeline
 
 1. Requirement Analysis
