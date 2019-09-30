@@ -26,6 +26,13 @@ Application Goals from User Stories are:
 * Signed-in user able to delete it's own Posts and Comments
 
 ## Approaches Used
+1. We used the async fetch to give a better user experience, so that user won’t wait for a long time to see all the posts.
+
+2. The navigation bar we used the conditional render to show different content for the logged in user and random visitor.
+
+3. We set up a home button for the profile page. In case our user who just updated their profile page and want to go back to home page to continue reading posts.
+
+4. In the signup page, we set the html input type to email and password, to avoid any invalid form submit.
 
 ## Major Hurdles
 
