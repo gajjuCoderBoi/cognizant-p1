@@ -27,6 +27,7 @@ Application Goals from User Stories are:
 
 ## Approaches Used
 
+## Major Hurdles
 
 
 
