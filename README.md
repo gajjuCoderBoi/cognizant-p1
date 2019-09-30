@@ -7,14 +7,57 @@
   <br>
 
   <br>
- 
   ·
   <a href="http://gajjucoderboi.github.io/cognizant-p1/src/index">DEMO</a>
   ·
   <a href="https://www.pivotaltracker.com/n/projects/2400262">User Stories</a>
    ·
- 
 </p>
+
+## User Stories
+
+[Pivotal Tracker (Foodie App)](https://www.pivotaltracker.com/n/projects/2400262)
+
+Application Goals from User Stories are:
+    
+* Sign-up and Create Profile Foodie User
+* Anyone can See Posts and Comments
+* Signed-in user able to post a Post and comment
+* Signed-in user able to delete it's own Posts and Comments
+
+## Approaches Used
+
+
+
+
+## Timeline
+
+1. Requirement Analysis
+    * Tuesday(Sep 24, 2019) - user stories
+        
+        We give our user stories points, so that we could priority our development steps 
+ 
+            https://www.pivotaltracker.com/n/projects/2400262
+
+2. Development
+    
+    * Wednesday(Sep 25, 2019) - Home page, fetch all users post and comments and display on the home page.
+    * Thursday(Sep 26, 2019) - Sign up page and login started
+    * Friday(Sep 27, 2019) - All the post and comments functional works.
+    * Friday(Sep 27, 2019) - Manual Testing - Finished profile page and testing all the possible error. 
+
+3. Deployement
+    * Friday(Sep 27, 2019) -  Deployed onto Github Sites
+    
+        <a href="http://gajjucoderboi.github.io/cognizant-p1/src/index">DEMO</a>
+        
+4. Presentation
+    * Monday (Sep 30, 2019) - Presentation
+
+## Wire Frame
+
+![Wireframe](./img/wireframe.jpg)
+
 
 ## Technology Used (Dependencies)
 
@@ -45,48 +88,6 @@
  * VS Code Live Server
  * Postman (API Testing and Calls)
 
-
-## Approaches Used
-
-## User Stories
-
-[Pivotal Tracker (Foodie App)](https://www.pivotaltracker.com/n/projects/2400262)
-
-Application Goals from User Stories are:
-    
-* Sign-up and Create Profile Foodie User
-* Anyone can See Posts and Comments
-* Signed-in user able to post a Post and comment
-* Signed-in user able to delete it's own Posts and Comments
-
-
-## Wire Frame
-
-![Wireframe](./img/wireframe.jpg)
-
-## Timeline
-
-1. Requirement Analysis
-    * Tuesday(Sep 24, 2019) - user stories
-        
-        We give our user stories points, so that we could priority our development steps 
- 
-            https://www.pivotaltracker.com/n/projects/2400262
-
-2. Development
-    
-    * Wednesday(Sep 25, 2019) - Home page, fetch all users post and comments and display on the home page.
-    * Thursday(Sep 26, 2019) - Sign up page and login started
-    * Friday(Sep 27, 2019) - All the post and comments functional works.
-    * Friday(Sep 27, 2019) - Manual Testing - Finished profile page and testing all the possible error. 
-
-3. Deployement
-    * Friday(Sep 27, 2019) -  Deployed onto Github Sites
-    
-        <a href="http://gajjucoderboi.github.io/cognizant-p1/src/index">DEMO</a>
-        
-4. Presentation
-    * Monday (Sep 30, 2019) - Presentation
 
 ## What's included
 
@@ -119,3 +120,9 @@ cognizant-p1/
 **Mohammad Javed**
 
 - <https://github.com/gajjuCoderBoi>
+
+## Special Thanks 
+
+#### Comment Post Idea
+
+        https://bootsnipp.com/snippets/M5obX
