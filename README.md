@@ -18,7 +18,7 @@
 
 ## Technology Used (Dependencies)
 
-####Bootstrap
+#### Bootstrap
 
    We use the Bootstrap to style our html elements, paste following code inside the head tag:
    
@@ -39,7 +39,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
     
-####Tools
+#### Tools
  * Webstorm 
  * VS Code
  * VS Code Live Server
