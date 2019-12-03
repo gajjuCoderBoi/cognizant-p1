@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (!(email && password)) {
                 alert("Please fill all the fields!!!")
             } else {
-                fetch('http://thesi.generalassemb.ly:8080/login', {
+                fetch('http://postit.cfapps.io/user/login', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 
-    fetch('http://thesi.generalassemb.ly:8080/post/list')
+    fetch('http://postit.cfapps.io/post/list')
         .then(res => res.json())
         .then(async posts => {
             for (let i = posts.length - 1; i >= 0; i--) {
                 let div = document.createElement('div');
                 let comments = [];
-                await fetch(`http://thesi.generalassemb.ly:8080/post/${posts[i].id}/comment`)
+                await fetch(`http://postit.cfapps.io/post/${posts[i].postId}/comment`)
                     .then(res => res.json())
                     .then(comnts => {
                         comments = comnts;
@@ -204,11 +204,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         <div class="input-group-prepend">
             <span class="input-group-text">Comment</span>
          </div>
-        <textarea class="form-control" aria-label="With textarea" id="comment-text-area-${post.id}"></textarea>
+        <textarea class="form-control" aria-label="With textarea" id="comment-text-area-${post.postId}"></textarea>
     </div>
   
     <div>
-        <button id = "post-button-${post.id}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
+        <button id = "post-button-${post.postId}" class="btn btn-primary mt-sm-4 float-right" onclick="postComment(this)">Comment</button>
 
     </div>
     <div class="clearfix"></div>
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function validateToken() {
         if (user) {
             let token = user.token;
-            let r = await fetch('http://thesi.generalassemb.ly:8080/user/post', {
+            let r = await fetch('http://postit.cfapps.io/user/post', {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -236,7 +236,7 @@ function createPost() {
     let title = document.getElementById('createPostInputTitle').value,
         desc = document.getElementById('createPostDescription').value,
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch('http://thesi.generalassemb.ly:8080/post', {
+    fetch('http://postit.cfapps.io/post/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -258,7 +258,7 @@ function postComment(post) {
     let postId = post.id.split('-')[2];
     let commentText = document.getElementById(`comment-text-area-${postId}`).value;
     let user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${postId}`, {
+    fetch(`http://postit.cfapps.io/comment/${postId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ function postComment(post) {
 function deletePost(post) {
     let id = post.id.split('-')[1],
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch(`http://thesi.generalassemb.ly:8080/post/${id}`, {
+    fetch(`http://postit.cfapps.io/post/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -293,7 +293,7 @@ function deletePost(post) {
 function deleteComment(comment) {
     let id = comment.id.split('-')[1],
         user = JSON.parse(localStorage.getItem('foodieUser'));
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`, {
+    fetch(`http://postit.cfapps.io/comment/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

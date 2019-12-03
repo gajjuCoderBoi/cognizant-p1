@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
           passwordConfirm !== "" &&
           password === passwordConfirm
       ) {
-        fetch("http://thesi.generalassemb.ly:8080/signup", {
+        fetch("http://postit.cfapps.io/user/signup", {
           headers: {
             "Content-Type": "application/json"
           },
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
 
     function creatProfile(token) {
-      fetch("http://thesi.generalassemb.ly:8080/profile", {
+      fetch("http://postit.cfapps.io/user/profile", {
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`

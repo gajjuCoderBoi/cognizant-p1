@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         async function getProfile() {
             if (user) {
                 let token = user.token;
-                let r = await fetch('http://thesi.generalassemb.ly:8080/profile', {
+                let r = await fetch('http://postit.cfapps.io/user/profile', {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let address = document.getElementById("address").value;
 
         (function updateProfile() {
-            fetch(`http://thesi.generalassemb.ly:8080/profile`, {
-                method: 'POST',
+            fetch(`http://postit.cfapps.io/user/profile`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${user.token}`

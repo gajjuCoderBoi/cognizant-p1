@@ -96,7 +96,7 @@ Application Goals from User Stories are:
 * Creating Profile with Signup
 ```text
         (function createSignup(){
-                fetch("http://thesi.generalassemb.ly:8080/signup", {
+                fetch("http://postit.cfapps.io/signup", {
                   headers: ...,
                   method: "POST",
                   body: JSON.stringify({
@@ -113,7 +113,7 @@ Application Goals from User Stories are:
   
 ```text
       ----------> function creatProfile(token) {
-                      fetch("http://thesi.generalassemb.ly:8080/profile", {
+                      fetch("http://postit.cfapps.io/profile", {
                         headers: {
                           ...
                         },
